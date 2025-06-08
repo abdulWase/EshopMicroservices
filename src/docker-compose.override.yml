@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  catalogdb:
+    image: postgres
+    volumes:
+      - postgres_catalog:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=CatalogDb
+
+  webapp:
+    build:
+      context: ./Services/Catalog/Catalog.API          # Path to the folder containing the Dockerfile
+      dockerfile: Dockerfile     # (optional) if not named "Dockerfile"
+    ports:
+      - "8080:80"
+    depends_on:
+      - catalogdb
+
+volumes:
+  postgres_catalog:

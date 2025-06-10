@@ -3,7 +3,7 @@
 namespace Catalog.API.Products.CreateProduct
 {
     /// <summary>
-    /// Request object for enpoint
+    /// Request object for endpoint
     /// </summary>
     /// <param name="Name"></param>
     /// <param name="Category"></param>

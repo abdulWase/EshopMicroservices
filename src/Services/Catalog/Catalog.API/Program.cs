@@ -1,14 +1,19 @@
+using BuildingBlocks.Behaviors;
 using Catalog.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //Add services to the container
 builder.Services.RegisterMapsterConfiguration();
-builder.Services.AddCarter();
+
+var assembly = typeof(Program).Assembly;
 builder.Services.AddMediatR(config =>
 {
-    config.RegisterServicesFromAssembly(typeof(Program).Assembly);
+    config.RegisterServicesFromAssembly(assembly);
+    config.AddOpenBehavior(typeof(ValidationBehavior<,>));//ValidationBehavior is generic one here
 });
+builder.Services.AddValidatorsFromAssembly(assembly);
+builder.Services.AddCarter();
 builder.Services.AddMarten(opts => {
     opts.Connection(builder.Configuration.GetConnectionString("Database")!);
     })

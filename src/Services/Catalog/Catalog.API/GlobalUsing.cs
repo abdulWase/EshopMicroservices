@@ -5,3 +5,4 @@ global using BuildingBlocks.CQRS;
 global using Catalog.API.Models;
 global using Marten;//Used for PostGreSQL
 global using Catalog.API.Exceptions;
+global using FluentValidation;

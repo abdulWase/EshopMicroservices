@@ -14,7 +14,7 @@
             RuleFor(x => x.Price).GreaterThan(0).WithMessage("Price is must be greater than 0");
         }
     }
-    internal class CreateProductCommandHandler(IDocumentSession session,ILogger<CreateProductCommandHandler> logger) //IDocumetSession is an abstraction no need for Repository Pattern
+    internal class CreateProductCommandHandler(IDocumentSession session) //IDocumetSession is an abstraction no need for Repository Pattern
         : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
         public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
